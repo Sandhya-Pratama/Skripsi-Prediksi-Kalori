@@ -204,7 +204,8 @@
                 </tr>
               </thead>
               <tbody>
-                {% for row in data %}
+                {% for row in data[:50] %} {# Menampilkan hanya 5 baris pertama
+                #}
                 <tr>
                   {% for value in row.values() %}
                   <td>{{ value }}</td>
@@ -223,7 +224,7 @@
     <!-- Dataset End -->
 
     <!-- Metode Start -->
-    <section id="metode" class="medote">
+    <section id="metode" class="metode">
       <div class="container-xxl py-5">
         <div class="container">
           <div
@@ -300,7 +301,7 @@
     </section>
     <!-- Metode End -->
 
-    <!-- Appointment Start -->
+    <!-- Form Start -->
     <section id="prediksi" class="prediksi">
       <div class="container-xxl py-5">
         <div class="container">
@@ -336,7 +337,7 @@
                       name="Age"
                       type="number"
                       class="form-control border-0"
-                      placeholder="1-100"
+                      placeholder="20-100"
                       style="height: 55px"
                       required
                     />
@@ -414,49 +415,6 @@
                     >
                       Cek Kalori Terbakar
                     </button>
-
-                    <!-- Modal -->
-                    <div
-                      class="modal fade"
-                      id="resultModal"
-                      tabindex="-1"
-                      role="dialog"
-                      aria-labelledby="resultModalLabel"
-                      aria-hidden="true"
-                    >
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="resultModalLabel">
-                              Prediction Result
-                            </h5>
-                            <button
-                              type="button"
-                              class="close"
-                              data-dismiss="modal"
-                              aria-label="Close"
-                            >
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <p
-                              id="predictionResult"
-                              class="prediction-text"
-                            ></p>
-                          </div>
-                          <div class="modal-footer">
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-dismiss="modal"
-                            >
-                              Close
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </form>
@@ -464,73 +422,10 @@
           </div>
         </div>
       </div>
+      <!-- Form End -->
+
+      <!-- Modal Start -->
     </section>
-
-    <!-- <script>
-      $(document).ready(function () {
-        $("#submitButton").click(function (event) {
-          event.preventDefault();
-
-          var Gender = $("#Gender").val();
-          var Age = $("#Age").val();
-          var Height = $("#Height").val();
-          var Weight = $("#Weight").val();
-          var Duration = $("#Duration").val();
-          var Heart_Rate = $("#Heart_Rate").val();
-          var Body_Temperature = $("#Body_Temperature").val();
-
-          // Validation: ensure all fields are filled
-          if (
-            !Gender ||
-            !Age ||
-            !Height ||
-            !Weight ||
-            !Duration ||
-            !Heart_Rate ||
-            !Body_Temperature
-          ) {
-            alert("Please fill out all fields.");
-            return;
-          }
-
-          // Log the data being sent
-          console.log({
-            Gender: Gender,
-            Age: Age,
-            Height: Height,
-            Weight: Weight,
-            Duration: Duration,
-            Heart_Rate: Heart_Rate,
-            Body_Temperature: Body_Temperature,
-          });
-
-          $.ajax({
-            type: "POST",
-            url: "/submit",
-            data: {
-              Gender: Gender,
-              Age: Age,
-              Height: Height,
-              Weight: Weight,
-              Duration: Duration,
-              Heart_Rate: Heart_Rate,
-              Body_Temperature: Body_Temperature,
-            },
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-            success: function (response) {
-              console.log("Success:", response.result);
-              $("#PredictedCalories").text(response.result);
-              $("#resultModal").modal("show");
-            },
-          });
-        });
-      });
-    </script> -->
-
-    <!-- Appointment End -->
-
-    <!-- Modal untuk hasil prediksi kalori -->
-    <!-- Modal
     <div
       class="modal fade"
       id="resultModal"
@@ -542,117 +437,76 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="resultModalLabel">Prediction Result</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
+            <h5
+              class="modal-title text-center text-white w-100"
+              id="resultModalLabel"
             >
-              <span aria-hidden="true">&times;</span>
-            </button>
+              Hasil Prediksi Kalori Terbakar
+            </h5>
           </div>
           <div class="modal-body">
-            {% if prediction_text %}
-            <p>{{ prediction_text }}</p>
-            {% endif %}
+            <p id="predictionResult" class="prediction-text"></p>
           </div>
           <div class="modal-footer">
             <button
               type="button"
               class="btn btn-secondary"
-              data-dismiss="modal"
+              data-bs-dismiss="modal"
+              id="closeModalButton"
             >
-              Close
+              Tutup
             </button>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!-- Modal End -->
 
     <!-- Footer Start -->
-    <div
+    <footer
       class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
       data-wow-delay="0.1s"
     >
-      <!-- <div class="container py-5">
-        <div class="row g-5">
-          <div class="col-lg-3 col-md-6">
-            <h5 class="text-light mb-4">Address</h5>
-            <p class="mb-2">
-              <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA
-            </p>
-            <p class="mb-2">
-              <i class="fa fa-phone-alt me-3"></i>+012 345 67890
-            </p>
-            <p class="mb-2">
-              <i class="fa fa-envelope me-3"></i>info@example.com
-            </p>
-            <div class="d-flex pt-2">
-              <a class="btn btn-outline-light btn-social rounded-circle" href=""
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a class="btn btn-outline-light btn-social rounded-circle" href=""
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a class="btn btn-outline-light btn-social rounded-circle" href=""
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a class="btn btn-outline-light btn-social rounded-circle" href=""
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5 class="text-light mb-4">Services</h5>
-            <a class="btn btn-link" href="">Cardiology</a>
-            <a class="btn btn-link" href="">Pulmonary</a>
-            <a class="btn btn-link" href="">Neurology</a>
-            <a class="btn btn-link" href="">Orthopedics</a>
-            <a class="btn btn-link" href="">Laboratory</a>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5 class="text-light mb-4">Quick Links</h5>
-            <a class="btn btn-link" href="">About Us</a>
-            <a class="btn btn-link" href="">Contact Us</a>
-            <a class="btn btn-link" href="">Our Services</a>
-            <a class="btn btn-link" href="">Terms & Condition</a>
-            <a class="btn btn-link" href="">Support</a>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5 class="text-light mb-4">Newsletter</h5>
-            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-            <div class="position-relative mx-auto" style="max-width: 400px">
-              <input
-                class="form-control border-0 w-100 py-3 ps-4 pe-5"
-                type="text"
-                placeholder="Your email"
-              />
-              <button
-                type="button"
-                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
-              >
-                SignUp
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> -->
       <div class="container">
-        <div class="copyright">
-          <div class="row">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-              &copy;copyright 2024.
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-              <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-              Designed By Sandhya
-            </div>
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+            <p>&copy; Copyright 2024. All Rights Reserved.</p>
+            <p>
+              For inquiries:
+              <a
+                href="mailto: sandhyaphutagalung@students.unnes.ac.id"
+                class="text-light"
+                >sandhyaphutagalung@students.unnes.ac.id</a
+              >
+            </p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <p>
+              Designed By
+              <a href="#" class="text-light">Sandhya Pratama Hutagalung</a>
+            </p>
+            <p>
+              Follow Us:
+              <a
+                href="https://www.facebook.com/sandhyap.hutagalung"
+                class="text-light"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/sandhyapratamahutagalung/"
+                class="text-light"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/stefanus_sandhya/"
+                class="text-light"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
     <!-- Footer End -->
 
     <!-- Back to Top -->
@@ -688,46 +542,6 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .getElementById("submitBtn")
-          .addEventListener("click", function (event) {
-            event.preventDefault(); // Menghentikan pengiriman formulir yang standar
-
-            const data = {
-              Gender: document.getElementById("Gender").value,
-              Age: document.getElementById("Age").value,
-              Height: document.getElementById("Height").value,
-              Weight: document.getElementById("Weight").value,
-              Duration: document.getElementById("Duration").value,
-              Heart_Rate: document.getElementById("Heart_Rate").value,
-              Body_Temp: document.getElementById("Body_Temp").value,
-            };
-
-            fetch("/predict", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data);
-                // Handle the response, such as updating the UI with the prediction
-                if (data.prediction_text) {
-                  document.getElementById("predictionResult").innerText =
-                    data.prediction_text;
-                  $("#resultModal").modal("show"); // Tampilkan modal
-                }
-              })
-              .catch((error) => {
-                console.error("Error:", error);
-              });
-          });
-      });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

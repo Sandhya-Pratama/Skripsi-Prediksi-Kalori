@@ -50,7 +50,7 @@ def predict():
 
         # Make prediction
         prediction = svr_model.predict(input_data_pca)
-        prediction_text = f"Predicted Calories: {prediction[0]:.2f}"
+        prediction_text = f"Prediksi kalori anda yang terbakar saat berolahraga adalah sekitar {prediction[0]:.2f} kcal"
 
         return jsonify({'prediction_text': prediction_text})
 
@@ -60,44 +60,3 @@ def predict():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# @app.route('/submit', methods=['POST'])
-# def submit():
-#     try:
-#         # Get form data
-#         age = request.form.get('Age')
-#         gender = request.form.get('Gender')
-#         height = request.form.get('Height')
-#         weight = request.form.get('Weight')
-#         duration = request.form.get('Duration')
-#         heart_rate = request.form.get('Heart_Rate')
-#         body_temperature = request.form.get('Body_Temperature')
-
-#         # Convert data to floats and validate ranges
-#         try:
-#             data = [
-#                 float(gender),
-#                 float(age),
-#                 float(height),
-#                 float(weight),
-#                 float(duration),
-#                 float(heart_rate),
-#                 float(body_temperature)
-#             ]
-#         except ValueError as ve:
-#             raise ValueError("Invalid input: all values must be numeric")
-
-#         # Create a numpy array from the data
-#         data_array = np.array(data)
-
-#         # Reshape data for prediction
-#         data_reshape = data_array.reshape(1, -1)
-      
-#         # Make prediction
-#         prediction = model.predict(data_reshape)
-
-#         # Return the result
-#         result = prediction[0]  # For regression, we return the predicted value directly
-#         return jsonify(result=result)
-#     except Exception as e:
-#         print(f"Error occurred: {e}")
-#         return jsonify(result=f"Error: {e}")

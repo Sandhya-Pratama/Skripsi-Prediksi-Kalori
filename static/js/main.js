@@ -42,14 +42,6 @@
     time: 2000,
   });
 
-  // Date and time picker
-  $(".date").datetimepicker({
-    format: "L",
-  });
-  $(".time").datetimepicker({
-    format: "LT",
-  });
-
   // Header carousel
   $(".header-carousel").owlCarousel({
     autoplay: false,
@@ -86,3 +78,99 @@
     },
   });
 })(jQuery);
+
+//navbar
+document.addEventListener("DOMContentLoaded", function () {
+  var navbarItems = document.querySelectorAll(".nav-item.nav-link");
+
+  // Fungsi untuk menangani perubahan warna teks saat scroll
+  function handleScroll() {
+    var scrollPosition = window.scrollY;
+
+    navbarItems.forEach(function (item) {
+      var targetId = item.getAttribute("href");
+      var targetSection = document.querySelector(targetId);
+
+      if (
+        targetSection &&
+        targetSection.offsetTop <= scrollPosition &&
+        targetSection.offsetTop + targetSection.offsetHeight > scrollPosition &&
+        targetId !== "#prediksi" &&
+        !item.classList.contains("active") // Tambahkan pengecualian untuk item "Metode"
+      ) {
+        // Tambahkan class active ke navbar item yang sesuai dengan halaman yang di-scroll
+        navbarItems.forEach(function (nav) {
+          nav.classList.remove("active");
+        });
+        item.classList.add("active");
+      }
+    });
+
+    // Tambahan untuk menangani kondisi khusus #prediksi dan #metode
+    var prediksiSection = document.querySelector("#prediksi");
+    var metodeItem = document.querySelector('a[href="#metode"]');
+
+    if (
+      prediksiSection &&
+      prediksiSection.offsetTop <= scrollPosition &&
+      scrollPosition < prediksiSection.offsetTop + prediksiSection.offsetHeight
+    ) {
+      // Jika scroll berada di #prediksi, tetapkan item "Metode" sebagai aktif
+      metodeItem.classList.remove("active"); // Hapus class active dari item "Metode"
+    }
+  }
+
+  // Panggil fungsi handleScroll saat halaman di-scroll
+  window.addEventListener("scroll", handleScroll);
+
+  // Panggil handleScroll untuk pertama kali saat halaman dimuat
+  handleScroll();
+});
+
+//Prediksi
+document
+  .getElementById("submitBtn")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // Menghentikan pengiriman formulir yang standar
+
+    const data = {
+      Gender: document.getElementById("Gender").value,
+      Age: document.getElementById("Age").value,
+      Height: document.getElementById("Height").value,
+      Weight: document.getElementById("Weight").value,
+      Duration: document.getElementById("Duration").value,
+      Heart_Rate: document.getElementById("Heart_Rate").value,
+      Body_Temp: document.getElementById("Body_Temp").value,
+    };
+
+    fetch("/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Handle the response, such as updating the UI with the prediction
+        if (data.prediction_text) {
+          document.getElementById("predictionResult").innerText =
+            data.prediction_text;
+          $("#resultModal").modal("show"); // Tampilkan modal
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+
+//Reset form
+document.addEventListener("DOMContentLoaded", (event) => {
+  const closeModalButton = document.getElementById("closeModalButton");
+  const form = document.getElementById("prediction-form");
+
+  closeModalButton.addEventListener("click", () => {
+    form.reset();
+  });
+});
