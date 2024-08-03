@@ -287,17 +287,43 @@ thead {
 } */
 
 /* Modal Styles */
-.modal-dialog {
+
+.tengah {
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: calc(100% - 3.5rem); /* Bootstrap's default margin for modal */
+  align-items: center;
+  min-height: 10px;
+  padding: 20px;
 }
 
-.modal-header {
-  background-color: #4284f5;
-  color: #fff;
-  border-bottom: none;
+.modal-content {
+  border-radius: 1rem;
+}
+
+.modal-content:hover {
+  box-shadow: 2px 2px 2px black;
+}
+
+.fa2 {
+  color: #2b84be;
+  font-size: 90px;
+  padding: 30px 0px;
+}
+
+.b1 {
+  background-color: #2b84be;
+  box-shadow: 0px 4px #337095;
+  font-size: 17px;
+}
+
+.r3 {
+  color: #c1c1c1;
+  font-weight: 500;
+}
+
+a,
+a:hover {
+  text-decoration: none;
 }
 
 /*** Testimonial ***/

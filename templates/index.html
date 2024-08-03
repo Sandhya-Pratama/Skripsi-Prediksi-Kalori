@@ -157,7 +157,9 @@
               </div>
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-              <p class="d-inline-block border rounded-pill py-1 px-4">About</p>
+              <p class="d-inline-block border rounded-pill py-1 px-4">
+                Tentang
+              </p>
               <h1 class="mb-4">
                 Kenapa kita perlu mengecek kalori yang terbakar?
               </h1>
@@ -191,7 +193,11 @@
             style="max-width: 600px"
           >
             <p class="d-inline-block border rounded-pill py-1 px-4">Dataset</p>
-            <h1>Dataset Calories + Excercise</h1>
+            <h1>Correlations Between Calories Burnt, Exercise and Body Type</h1>
+            <h5>
+              Dataset ini diambil dari Kaggle dengan jumlah responden 15.000
+              data, namun data ini hanya ditampilkan 50 baris
+            </h5>
           </div>
           <div class="table-container">
             {% if data %}
@@ -337,7 +343,7 @@
                       name="Age"
                       type="number"
                       class="form-control border-0"
-                      placeholder="20-100"
+                      placeholder="1-100"
                       style="height: 55px"
                       required
                     />
@@ -363,7 +369,7 @@
                       name="Weight"
                       type="number"
                       class="form-control border-0"
-                      placeholder="Kilogram"
+                      placeholder="1-300"
                       style="height: 55px"
                       required
                     />
@@ -422,10 +428,10 @@
           </div>
         </div>
       </div>
-      <!-- Form End -->
-
-      <!-- Modal Start -->
     </section>
+    <!-- Form End -->
+
+    <!-- Modal Start -->
     <div
       class="modal fade"
       id="resultModal"
@@ -434,29 +440,42 @@
       aria-labelledby="resultModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5
-              class="modal-title text-center text-white w-100"
-              id="resultModalLabel"
-            >
-              Hasil Prediksi Kalori Terbakar
-            </h5>
+      <div class="modal-dialog modal-dialog-centered" role="document" ;>
+        <div
+          style="background-color: #041e43"
+          class="modal-content py-md-5 px-md-4 p-sm-3 p-4"
+          ;
+        >
+          <h4
+            class="modal-title text-center text-white w-100"
+            id="resultModalLabel"
+          >
+            HASIL PREDIKSI KALORI TERBAKAR
+          </h4>
+          <div class="tengah">
+            <dotlottie-player
+              src="https://lottie.host/1645a7cd-af2a-4531-a907-e4c849afc5dc/vOjFwjnSx1.json"
+              background="transparent"
+              speed="1"
+              style="width: 100px; height: 100px"
+              loop
+              autoplay
+            ></dotlottie-player>
           </div>
-          <div class="modal-body">
-            <p id="predictionResult" class="prediction-text"></p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-              id="closeModalButton"
-            >
-              Tutup
-            </button>
-          </div>
+          <p
+            class="r3 px-md-5 px-sm-1 text-white text-center"
+            id="predictionResult"
+            class="prediction-text"
+          ></p>
+          <button
+            style="background-color: #0463fa"
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            id="closeModalButton"
+          >
+            Tutup
+          </button>
         </div>
       </div>
     </div>

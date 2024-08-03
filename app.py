@@ -18,14 +18,6 @@ def index():
     data = dataset.to_dict('records')
     return render_template('index.html', data=data)  
 
-@app.route('/form', methods=['GET'])
-def form():
-    return render_template('form.html')
-
-@app.route('/about', methods=['GET'])
-def about():
-    return render_template('about.html')
-
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
