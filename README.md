@@ -26,27 +26,38 @@ Dalam proyek ini, kami menggunakan dataset yang berisi informasi tentang aktivit
     pip install -r requirements.txt
     ```
 
+## Struktur Folder
+
+- `colabs_file/`: Folder untuk menyimpan file terkait Colab atau notebook eksperimen.
+- `model/`: Folder untuk menyimpan model dan scaler, termasuk:
+  - `pca_best.pkl`: Model PCA yang sudah dioptimalkan.
+  - `scaler.pkl`: Scaler yang digunakan untuk preprocessing.
+  - `svr_model.pkl`: Model SVR yang telah dilatih.
+- `static/`: Folder untuk aset statis, termasuk:
+  - `css/`: File CSS untuk styling.
+  - `img/`: Folder untuk gambar.
+  - `js/`: Script JavaScript.
+  - `lib/`: Library tambahan.
+  - `scss/`: File SCSS untuk styling tambahan.
+- `templates/`: Folder untuk file template HTML, termasuk:
+  - `index.html`: Halaman utama aplikasi.
+  - `modal.html`: File modal HTML untuk dialog atau popup.
+- `venv/`: Lingkungan virtual Python (tidak termasuk dalam versi kontrol).
+
 ## Penggunaan
 
-1. **Dataset:** Letakkan file dataset dalam folder `data`. Pastikan dataset memiliki kolom yang sesuai untuk fitur yang digunakan.
+1. **Dataset:** Letakkan file dataset dalam folder yang sesuai di `colabs_file` atau di lokasi lain yang diinginkan.
 
 2. **Jalankan Script Utama:** Gunakan script berikut untuk menjalankan pipeline prediksi:
     ```bash
     python main.py
     ```
 
-3. **Parameter GridSearch:** Anda dapat menyesuaikan parameter pencarian GridSearch di file `config.py`, seperti `C`, `epsilon`, atau `kernel`.
-
-## Struktur Folder
-
-- `data/`: Folder untuk dataset.
-- `scripts/`: Folder berisi script utama dan pendukung.
-- `models/`: Folder untuk menyimpan model yang telah dilatih.
-- `config.py`: File konfigurasi untuk parameter PCA dan GridSearchCV.
+3. **Web Interface:** File HTML dan aset statis tersedia di folder `templates` dan `static` untuk membuat antarmuka prediksi.
 
 ## Hasil Evaluasi
 
-Hasil evaluasi model akan disimpan di folder `results/`, termasuk metrik evaluasi seperti Mean Squared Error (MSE) dan Mean Absolute Error (MAE).
+Hasil evaluasi model dapat disimpan dalam folder `results/`, termasuk metrik evaluasi seperti Mean Squared Error (MSE) dan Mean Absolute Error (MAE).
 
 ## Dependensi
 
@@ -55,6 +66,7 @@ Proyek ini memerlukan pustaka berikut:
 - `pandas`
 - `scikit-learn`
 - `matplotlib`
+- `flask` (jika menggunakan web interface)
 
 ## Penulis
 
