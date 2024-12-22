@@ -70,7 +70,7 @@ Proyek ini memerlukan pustaka berikut:
 
 ## Penulis
 
-- **Nama Anda** - [GitHub](https://github.com/username)
+- **Nama Anda** - [GitHub](https://github.com/Sandhya-Pratama)
 
 ## Lisensi
 
