@@ -55,10 +55,6 @@ Dalam proyek ini, kami menggunakan dataset yang berisi informasi tentang aktivit
 
 3. **Web Interface:** File HTML dan aset statis tersedia di folder `templates` dan `static` untuk membuat antarmuka prediksi.
 
-## Hasil Evaluasi
-
-Hasil evaluasi model dapat disimpan dalam folder `results/`, termasuk metrik evaluasi seperti Mean Squared Error (MSE) dan Mean Absolute Error (MAE).
-
 ## Dependensi
 
 Proyek ini memerlukan pustaka berikut:
@@ -70,8 +66,5 @@ Proyek ini memerlukan pustaka berikut:
 
 ## Penulis
 
-- **Nama Anda** - [GitHub](https://github.com/Sandhya-Pratama)
+- **Sandhya Pratama Hutagalung** - [GitHub](https://github.com/Sandhya-Pratama)
 
-## Lisensi
-
-Proyek ini dilisensikan di bawah MIT License. Silakan lihat file `LICENSE` untuk informasi lebih lanjut.
